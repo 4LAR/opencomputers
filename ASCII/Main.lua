@@ -9,7 +9,7 @@ local filesystem = require("Filesystem")
 local workspace, window, menu = system.addWindow(GUI.filledWindow(1, 1, 50, 25, 0xE1E1E1))
 
 -- Get localization table dependent of current system language
-local localization = system.getCurrentScriptLocalization()
+--local localization = system.getCurrentScriptLocalization()
 
 -- Add single cell layout to window
 local layout = window:addChild(GUI.layout(1, 1, window.width, window.height, 1, 1))
