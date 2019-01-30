@@ -9,16 +9,16 @@ local menu = application:addChild(GUI.menu(1, 1, application.width, 0xEEEEEE, 0x
 menu:addItem("Pic Viever", 0x0).onTouch = function()
 end
 menu:addItem("open", 0x0).onTouch = function()
-	local filesystemDialogOpen = GUI.addFilesystemDialog(application, false, 50, math.floor(application.height * 0.8), "Open", "Cancel", "File name", "/")
-	filesystemDialogOpen:setMode(GUI.IO_MODE_OPEN, GUI.IO_MODE_FILE)
-	filesystemDialogOpen:addExtensionFilter(".pic")
-	filesystemDialogOpen.onSubmit = function(path)
-		application:addChild(GUI.image(2, 2, image.load(path)))
-	end
-	filesystemDialogOpen:show()
+  local filesystemDialogOpen = GUI.addFilesystemDialog(application, false, 50, math.floor(application.height * 0.8), "Open", "Cancel", "File name", "/")
+  filesystemDialogOpen:setMode(GUI.IO_MODE_OPEN, GUI.IO_MODE_FILE)
+  filesystemDialogOpen:addExtensionFilter(".pic")
+  filesystemDialogOpen.onSubmit = function(path)
+    application:addChild(GUI.image(2, 2, image.load(path)))
+  end
+  filesystemDialogOpen:show()
 end
 menu:addItem("exit", 0x0).onTouch = function()
-	application:remove()
+  application:stop()
 end
 --------------------------------------------------------------------------------
 application:draw(true)
