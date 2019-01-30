@@ -63,9 +63,24 @@ end
 local contextMenu = menu:addContextMenuItem("File")
 
 contextMenu:addItem("Save").onTouch = function()
-  filesystem.write("/ascii.maf", text2.text)
-  
+	local filesystemDialogSave = GUI.addFilesystemDialog(workspace, false, 50, math.floor(workspace.height * 0.8), "Save", "Cancel", "File name", "/")
+	filesystemDialogSave:setMode(GUI.IO_MODE_SAVE, GUI.IO_MODE_FILE)
+	filesystemDialogSave:addExtensionFilter(".maf")
+	filesystemDialogSave.onSubmit = function(path)
+		filesystem.write(path,text2.text)
+	end
+	filesystemDialogSave:show()
 end
+contextMenu:addItem("Open").onTouch = function()
+	local filesystemDialogOpen = GUI.addFilesystemDialog(workspace, false, 50, math.floor(workspace.height * 0.8), "Open", "Cancel", "File name", "/")
+	filesystemDialogOpen:setMode(GUI.IO_MODE_OPEN, GUI.IO_MODE_FILE)
+	filesystemDialogOpen:addExtensionFilter(".maf")
+	filesystemDialogOpen.onSubmit = function(path)
+		text2.text = filesystem.read(path)
+	end
+	filesystemDialogOpen:show()
+end
+
 contextMenu:addSeparator()
 contextMenu:addItem("Close").onTouch = function()
   window:remove()
