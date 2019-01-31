@@ -40,24 +40,22 @@ window:addChild(text1)
 window:addChild(text2)
 window:addChild(butclear)
 function code()
-  text2.text = ""
-        for i = 1,string.len(text1.text) do
-            g =string.byte(text1.text,i) .. "/"
-      text2.text = text2.text .. g
-        end
+  text2.text = table.concat({string.byte(text1.text, 1, #text1.text)}, "/")
 end
 
 function decode()
-    text1.text = ""
-        s = 1
-        while true do
-            if (s + 1) > string.len(text2.text) then break end
-            ss = string.find(text2.text,"/",s)
-            sl = string.sub(text2.text,s,ss-1)
-g = string.char(sl)
-text1.text = text1.text .. g
-            s = ss + 1
-        end
+	if text2.text:match("^[%d/]+$") then
+		text1.text = ""
+		local number = ""
+		for digits in text2.text:gmatch("[^/]+") do
+			number  =tonumber(digits)
+			if number then	
+				text1.text = text1.text .. string.char(number)
+			end
+		end
+	else
+		GUI.alert("Говно ввёл")
+	end
 end
 
 local contextMenu = menu:addContextMenuItem("File")
