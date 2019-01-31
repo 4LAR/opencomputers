@@ -13,7 +13,7 @@ menu:addItem("open", 0x0).onTouch = function()
   filesystemDialogOpen:setMode(GUI.IO_MODE_OPEN, GUI.IO_MODE_FILE)
   filesystemDialogOpen:addExtensionFilter(".pic")
   filesystemDialogOpen.onSubmit = function(path)
-    application:addChild(GUI.image(2, 2, image.load(path)))
+    application:addChild(GUI.image(1, 2, image.load(path)))
   end
   filesystemDialogOpen:show()
 end
