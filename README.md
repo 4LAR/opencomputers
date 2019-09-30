@@ -1,7 +1,7 @@
 # opencomputers
 
 Programs:
-  -ASCII
-  -Pic Viewer
+  -ASCII <br>
+  Pic Viewer<br>
 
 by 100LAR
